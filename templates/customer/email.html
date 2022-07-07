@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Email</title>
+	<style type="text/css">
+
+		.header{
+			height: 100px;
+			background-color:#34495E;
+			border: 1px solid black;
+		}
+		h1{
+			color: white;
+
+		}
+		h3{
+			color: white;
+		}
+		.content{
+			height: 500px;
+			border: 1px solid black;
+		}
+		.footer{
+			height: 70px;
+			background-color: 	#34495E;
+			border: 1px solid black;
+		}
+		input[type="text"]{
+			width: 300px;
+			height: 30px;
+			border-radius: 10px;
+		}
+		textarea{
+			width: 300px;
+			height: 100px;
+			border-radius: 10px;
+		}
+		input[type="submit"]{
+			width: 100px;
+			height: 45px;
+			border-radius: 40px;
+			font-family:courier;
+			background-color: #5e4934 ;
+			color: white;
+			font-size: 16px;
+		}
+	</style>
+</head>
+<body>
+	<div class="header">
+		<h1 align="center">Email Sender</h1>
+	</div>
+
+	<div class="content">
+		<br/><br/><br/><br/><br/>
+		{% if messages %}
+		
+		    {% for message in messages %}
+		    <script type="text/javascript">
+		    	{% if message.tags %}
+		    		alert('{{ message }}');
+		    	{% endif %}
+		    </script>
+		    {% endfor %}
+		
+		{% endif %}
+		<form method="POST" action="/customer/email_info/">
+				{% csrf_token %}
+			<table align="center" cellpadding="10" cellspacing="5">
+				<tr>
+					<th>To</th>
+					<td><input type="text" name="to"></td>
+				</tr>
+				<tr>
+					<th>Subject</th>
+					<td><input type="text" name="subject"></td>
+				</tr>
+				<tr>
+					<th>Message</th>
+					<td>
+						<textarea name="message">
+
+						</textarea>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center"><input type="submit" name="submit" value="Send"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+
+	<div class="footer">
+		<h3 align="center">Copyright &copy; 2022. All Rights Reserved. Design by: Ankit Zadafiya</h3>
+	</div>
+
+</body>
+</html>
